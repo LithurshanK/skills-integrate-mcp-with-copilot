@@ -41,10 +41,14 @@ The application uses a simple data model with meaningful identifiers:
    - Description
    - Schedule
    - Maximum number of participants allowed
-   - List of student emails who are signed up
-
 2. **Students** - Uses email as identifier:
-   - Name
-   - Grade level
+   - Student email
 
-All data is stored in memory, which means data will be reset when the server restarts.
+3. **Registrations** - Links students to activities and prevents duplicate
+   registrations.
+
+The application stores this data in `activities.sqlite` next to `app.py`.
+The database is created and seeded with the initial activities automatically on
+first startup. Existing in-memory data is not available for migration because
+it was lost when the previous process stopped; future schema changes should be
+handled with explicit migrations.
